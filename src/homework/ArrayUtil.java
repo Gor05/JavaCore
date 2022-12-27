@@ -4,6 +4,7 @@ public class ArrayUtil {
     public static void main(String[] args) {
         int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
         int sum = 0;
+        double total = 0;
         System.out.print("բոլոր էլեմենտները։ ");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
@@ -13,7 +14,6 @@ public class ArrayUtil {
         System.out.print("զույգ թվեր։ ");
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
-
                 System.out.print(array[i] + " ");
             }
         }
@@ -24,6 +24,12 @@ public class ArrayUtil {
                 System.out.print(array[i] + " ");
             }
         }
+        System.out.println();
+        for (int i = 0; i < array.length ; i++) {
+            total = total + array[i];
+        }
+        double average = total / array.length;
+        System.out.print("միջին թվաբանական։ " + average);
         System.out.println();
         System.out.println("գումար։ " + sum);
         //աոաջին անդամ
