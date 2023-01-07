@@ -15,31 +15,19 @@ public class CharArrayExample {
         System.out.println();
         System.out.println("c-երի քանակը " + count);
         char[] chars2 = {'j', 'a', 'v', 'a', 'l', 'o', 'v', 'e' };
-        double total = 0;
-        for (int i = 0; i < chars2.length; i++) {
-            total = total + chars2[i];
-        }
-        double average = total / chars2.length;
-        int startIndex = 0;
-        int lastIndex = chars2.length - 1;
-        int midIndex = startIndex + (lastIndex - startIndex) / 2;
+        System.out.print("միջին անդամ "+chars2[chars2.length/2-1]);
         System.out.println();
-        System.out.println("The mid index is " + midIndex + " and the element at mid is " + chars2[midIndex]);
-
         char[] chars3 = {'j', 'a', 'v', 'a', 'l', 'o', 'l', 'y' };
 
         for (int i = 0; i < chars3.length; i++) {
             System.out.print(chars3[i] + " ");
         }
         System.out.println();
-        for (int i = 0; i < chars3.length; i++) {
-            if (chars3[i] == 'l') {
+            if (chars3[chars3.length-2] == 'l' && chars3[chars3.length-1] == 'y') {
                 System.out.print(" " + true);
-            }
-            if (chars3[i] == 'y') {
-                System.out.print(" " + true);
-            } else System.out.print(" " + false);
-        }
+            }else System.out.println(false);
+
+
         System.out.println();
         char[] text = {' ', ' ', 'b', 'a', 'r', 'e', 'v', ' ', ' ' };
         for (int i = 0; i < text.length; i++) {
@@ -47,7 +35,7 @@ public class CharArrayExample {
                 System.out.print(text[i]);
             }
         }
-
+        System.out.print("առանց պոաբելների ");
     }
 }
 
