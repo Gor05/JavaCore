@@ -1,8 +1,7 @@
 package homework6;
 
 public class ArrayUtil {
-    void allElements() {
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
+    void allElements(int[] array) {
         int sum = 0;
         double total = 0;
         System.out.print("բոլոր էլեմենտները։ ");
@@ -12,9 +11,8 @@ public class ArrayUtil {
         }
     }
 
-    void evenElements() {
+    void evenElements(int[] array) {
         System.out.print("զույգ թվեր։ ");
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
                 System.out.print(array[i] + " ");
@@ -22,9 +20,8 @@ public class ArrayUtil {
         }
     }
 
-    void oddElements() {
+    void oddElements(int[] array) {
         System.out.print("կենտ թվեր։ ");
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 1) {
                 System.out.print(array[i] + " ");
@@ -32,8 +29,7 @@ public class ArrayUtil {
         }
     }
 
-    void average() {
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
+    void average(int[] array) {
         int total = 0;
         for (int i = 0; i < array.length; i++) {
             total = total + array[i];
@@ -42,16 +38,14 @@ public class ArrayUtil {
         System.out.print("միջին թվաբանական։ " + average);
     }
 
-    void midIndex() {
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
+    void midIndex(int[] array) {
         int startIndex = 0;
         int lastIndex = array.length - 1;
         int midIndex = startIndex + (lastIndex - startIndex) / 2;
         System.out.println("The mid index is " + midIndex + " and the element at mid is " + array[midIndex]);
     }
 
-    void minimum() {
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
+    void minimum(int[] array) {
         int min = array[0];
         for (int i = 0; i < array.length; i++) {
             if (array[i] < min) {
@@ -61,8 +55,7 @@ public class ArrayUtil {
         System.out.println("մինիմում։ " + min);
     }
 
-    void maximum() {
-        int[] array = {2, 5, 8, 10, 32, 22, 11, 66, 12, 30};
+    void maximum(int[] array) {
         int max = array[0];
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
