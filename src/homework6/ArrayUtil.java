@@ -65,9 +65,4 @@ public class ArrayUtil {
         System.out.println("մակսիմում։ " + max);
 
     }
-
-    public static void main(String[] args) {
-
-
-    }
 }
