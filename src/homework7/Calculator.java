@@ -1,32 +1,24 @@
 package homework7;
 
 public class Calculator {
-    void plus(double a, double b) {
-
-        double res;
-        res = a + b;
-        System.out.println("Additional result = " + res);
+    double plus(double a, double b) {
+        return a + b;
     }
 
-    void minus(double a, double b) {
+    double minus(double a, double b) {
         double res;
-        res = a - b;
-        System.out.println("Subtraction result = " + res);
+        return a - b;
     }
 
-    void divide(double a, double b) {
-        double res;
-        res = a / b;
+    double divide(double a, double b) {
         if (b == 0) {
-            System.out.println("Զրոի չի կարելի բաժանել");
-        } else System.out.println(res);
-        System.out.println("Division result = " + res);
+            System.out.println("թիվը 0-ի չի բաժանվում");
+            return -1;
+        } else return a / b;
     }
 
-    void multiply(double a, double b) {
-        double res;
-        res = a * b;
-        System.out.println("Multiplication result = " + res);
+    double multiply(double a, double b) {
+        return a * b;
     }
 
 }
