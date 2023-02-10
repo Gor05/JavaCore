@@ -1,6 +1,6 @@
-package homework;
+package homework1;
 
-public class Homework1 {
+public class Homework {
     public static void main(String[] args) {
 
         //ֆիգուռ 1
