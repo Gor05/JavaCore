@@ -22,14 +22,16 @@ public class EmployeeDemo {
                     isRun = false;
                     break;
                 case "1":
-                    System.out.println("Please input employee");
-                    String employee = scanner.nextLine();
                     System.out.println("Please input name");
                     String name = scanner.nextLine();
                     System.out.println("Please input surname");
                     String surname = scanner.nextLine();
-                    Employee emp = new Employee(employee,name,surname);
-                    employeeStorage.add(emp);
+                    System.out.println("Please input employeeID");
+                    String employeeID = scanner.nextLine();
+                    System.out.println("Please input company");
+                    String company = scanner.nextLine();
+                    Employee employee = new Employee(name,surname,employeeID,company);
+                    employeeStorage.add(employee);
                     System.out.println("employee was added");
                     break;
                 case "2":
@@ -37,14 +39,19 @@ public class EmployeeDemo {
                     break;
                 case "3":
                     System.out.println("Please input keyword");
-                    String keyword = scanner.nextLine();
+                    String keyword;
+                    keyword = scanner.nextLine();
                     employeeStorage.searchByEmployeeID(keyword);
                     break;
                 case "4" :
-
+                    System.out.println("Please input key");
+                    String key = scanner.nextLine();
+                    employeeStorage.searchByCompanyName(key);
+                    break;
                 default:
                     System.out.println("wrong command. Please try again");
             }
         }
     }
 }
+

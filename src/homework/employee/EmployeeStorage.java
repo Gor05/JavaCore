@@ -30,14 +30,29 @@ public class EmployeeStorage {
     public void searchByEmployeeID(String keyword) {
         boolean found = false;
         for (int i = 0; i < size; i++) {
-            Employee employe = array[i];
-            if (employe.getName().contains(keyword)){
+            Employee employee = array[i];
+            if (employee.getEmployeeID().contains(keyword)){
                 found = true;
-                System.out.println(employe);
+                System.out.println(employee);
             }
         }
         if (!found){
-            System.out.println("Book with " + keyword + " not found" );
+            System.out.println( keyword + " not found" );
+
+        }
+    }
+
+    public void searchByCompanyName(String key) {
+        boolean found = false;
+        for (int i = 0; i < size; i++) {
+            Employee employee = array[i];
+            if (employee.getCompany().contains(key)){
+                found = true;
+                System.out.println(employee);
+            }
+        }
+        if (!found){
+            System.out.println( key + " not found" );
 
         }
     }

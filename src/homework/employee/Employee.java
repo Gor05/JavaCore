@@ -5,11 +5,13 @@ public class Employee {
     private String name;
     private String surname;
     private String employeeID;
+    private String company;
 
-    public Employee(String name, String surname, String employeeID) {
+    public Employee(String name, String surname, String employeeID, String company) {
         this.name = name;
         this.surname = surname;
         this.employeeID = employeeID;
+        this.company = company;
     }
 
     public Employee() {
@@ -40,12 +42,21 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", employeeID=" + employeeID +
+                ", employeeID='" + employeeID + '\'' +
+                ", company='" + company + '\'' +
                 '}';
     }
 }
