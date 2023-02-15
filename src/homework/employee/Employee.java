@@ -1,21 +1,25 @@
 package homework.employee;
 
+import java.util.Objects;
+
 public class Employee {
 
     private String name;
     private String surname;
     private String employeeID;
+    private String salary;
     private String company;
+    private String position;
+    private boolean active = true;
 
-    public Employee(String name, String surname, String employeeID, String company) {
+    public Employee(String name, String surname, String employeeID, String salary, String company, String position) {
         this.name = name;
         this.surname = surname;
         this.employeeID = employeeID;
+        this.salary = salary;
         this.company = company;
-    }
-
-    public Employee() {
-
+        this.position = position;
+        this.active = active;
     }
 
     public String getName() {
@@ -42,6 +46,14 @@ public class Employee {
         this.employeeID = employeeID;
     }
 
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -50,13 +62,44 @@ public class Employee {
         this.company = company;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return active == employee.active && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(employeeID, employee.employeeID) && Objects.equals(salary, employee.salary) && Objects.equals(company, employee.company) && Objects.equals(position, employee.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, employeeID, salary, company, position, active);
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", employeeID='" + employeeID + '\'' +
+                ", salary=" + salary +
                 ", company='" + company + '\'' +
+                ", position='" + position + '\'' +
                 '}';
     }
 }
