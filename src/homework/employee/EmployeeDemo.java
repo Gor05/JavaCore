@@ -1,13 +1,20 @@
 package homework.employee;
 
+
+import javax.xml.crypto.Data;
+import  java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class EmployeeDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         Scanner scanner = new Scanner(System.in);
         EmployeeStorage employeeStorage = new EmployeeStorage();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date birth ;
 
         boolean isRun = true;
         while (isRun) {
@@ -28,6 +35,8 @@ public class EmployeeDemo {
                     isRun = false;
                     break;
                 case "1":
+                    Date reg = new Date();
+
                     System.out.println("Please input name");
                     String name = scanner.nextLine();
                     System.out.println("Please input surname");
@@ -40,7 +49,10 @@ public class EmployeeDemo {
                     String company = scanner.nextLine();
                     System.out.println("Please input position");
                     String position = scanner.nextLine();
-                    Employee employee = new Employee(name, surname, employeeID, salary, company, position);
+                    System.out.println("Please input date");
+                    String date = scanner.nextLine();
+                    birth = sdf.parse(date);
+                    Employee employee = new Employee(name, surname, employeeID, salary, company, position,birth,reg);
                     employeeStorage.add(employee);
                     System.out.println("employee was added");
                     break;
