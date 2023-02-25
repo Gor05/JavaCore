@@ -1,4 +1,4 @@
-package medicalCentre;
+package medicalCentre.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,9 +15,10 @@ public class Doctor {
     private String profession;
     private Date birth;
     private Date reg;
+    private Doctor doc;
 
 
-    public Doctor(String id, String name, String surname, String email, String phoneNumber, String profession, Date birth, Date reg) {
+    public Doctor(String id, String name, String surname, String email, String phoneNumber, String profession, Date birth, Date reg,Doctor doc) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -26,6 +27,23 @@ public class Doctor {
         this.profession = profession;
         this.birth = birth;
         this.reg = reg;
+        this.doc = doc;
+    }
+
+    public SimpleDateFormat getSdf() {
+        return sdf;
+    }
+
+    public void setSdf(SimpleDateFormat sdf) {
+        this.sdf = sdf;
+    }
+
+    public SimpleDateFormat getSd2() {
+        return sd2;
+    }
+
+    public void setSd2(SimpleDateFormat sd2) {
+        this.sd2 = sd2;
     }
 
     public String getId() {
@@ -92,6 +110,10 @@ public class Doctor {
         this.reg = reg;
     }
 
+    public void setDoctor(Doctor doc) {
+        this.doc = doc;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,7 +130,9 @@ public class Doctor {
     @Override
     public String toString() {
         return "Doctor{" +
-                "id='" + id + '\'' +
+                "sdf=" + sdf +
+                ", sd2=" + sd2 +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
@@ -116,6 +140,7 @@ public class Doctor {
                 ", profession='" + profession + '\'' +
                 ", birth=" + sdf.format(birth) +
                 ", reg=" + sd2.format(reg) +
+                ", doc=" + doc +
                 '}';
     }
 }
