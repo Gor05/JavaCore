@@ -1,102 +1,144 @@
 package medicalCentre;
+
 import medicalCentre.model.Doctor;
 import medicalCentre.model.Patient;
+import medicalCentre.storage.PersonStorage;
+import medicalCentre.util.DateUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class MedicalCentreDemo {
-    private static Doctor doc;
+public class MedicalCentreDemo implements Commands {
 
-    public static void main(String[] args) throws ParseException {
-        Scanner scanner = new Scanner(System.in);
-        medicalCentreStorage mcs = new medicalCentreStorage();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date birth;
+    private static Scanner scanner = new Scanner(System.in);
+    private  static PersonStorage personStorage = new PersonStorage();
+    public static void main(String[] args) {
 
         boolean isRun = true;
-        while (isRun) {
-            System.out.println("Please input 0 for exit");
-            System.out.println("Please input 1 for add doctor");
-            System.out.println("Please input 2 for search doctor by profession");
-            System.out.println("Please input 3 for delete doctor by id");
-            System.out.println("Please input 4 for change doctor data by id");
-            System.out.println("Please input 5 add patient");
-            System.out.println("Please input 6 for print all patients by doctor");
-            System.out.println("Please input 7 print today patients");
-
-            String command = scanner.nextLine();
-            switch (command) {
-                case "0":
-                    isRun = false;
-                    break;
-                case "1":
-                    Date reg = new Date();
-
-                    System.out.println("Please input id");
-                    String id = scanner.nextLine();
-                    System.out.println("Please input name");
-                    String name = scanner.nextLine();
-                    System.out.println("Please input surname");
-                    String surname = scanner.nextLine();
-                    System.out.println("Please input email");
-                    String email = scanner.nextLine();
-                    System.out.println("Please input phoneNumber");
-                    String phoneNumber = scanner.nextLine();
-                    System.out.println("Please input profession");
-                    String profession = scanner.nextLine();
-                    System.out.println("Please input date");
-                    String date = scanner.nextLine();
-                    birth = sdf.parse(date);
-                    Doctor doctor = new Doctor(id,name,surname,email,phoneNumber,profession,birth,reg,doc);
-                    mcs.add(doctor);
-                    System.out.println("Doctor was added");
-                    break;
-                case "2":
-                    String pro;
-                    pro = scanner.nextLine();
-                    mcs.searchDoctorByProfession(pro);
-                    break;
-                case "3":
-                    String rem;
-                    rem = scanner.nextLine();
-                    mcs.deleteDoctorByid(rem);
-                    break;
-                case "4":
-                    String ddb = scanner.nextLine();
-                    System.out.println("New data");
-                    String newData = scanner.nextLine();
-                    mcs.doctordata(ddb,newData);
-
-                    break;
-                case "5":
-                    System.out.println("Please input id");
-                    String Id = scanner.nextLine();
-                    System.out.println("Please input name");
-                    String Name = scanner.nextLine();
-                    System.out.println("Please input surname");
-                    String Surname = scanner.nextLine();
-                    System.out.println("Please input email");
-                    String Email = scanner.nextLine();
-                    System.out.println("Please input phone");
-                    String phone = scanner.nextLine();
-                    Patient patient = new Patient(Id,Name,Surname,Email,phone);
-                    mcs.add(patient);
-                    System.out.println("Doctor was added");
-                    break;
-                case "6":
-                    String al;
-                    al = scanner.nextLine();
-                    mcs.allPatientsBydoctor(al);
-                    break;
-                case "7":
-
-                    break;
-                default:
-                    System.out.println("wrong command. Please try again");
-            }
+        while (isRun){
+          Commands.printCommands();
+       String command = scanner.nextLine();
+       switch (command){
+           case  EXIT :
+               isRun = false;
+               break;
+           case  ADD_DOCTOR:
+                addDoctor();
+               break;
+           case  SEARCH_DOCTOR_BY_PROFESSION:
+               searchDoctorByProfession();
+               break;
+           case  DELETE_DOCTOR_BY_ID:
+               deleteDoctorById();
+               break;
+           case  CHANGE_DOCTOR_BY_ID:
+               changeDoctorById();
+               break;
+           case  ADD_PATIENT:
+               addPatient();
+               break;
+           case  PTINT_ALL_PATIENTS_BY_DOCTOR:
+               printAllPatientsByDoctor();
+               break;
+           case  PRINT_TODAYS_PATIENTS:
+               personStorage.printTodaysPatients();
+               break;
+           default:
+               System.out.println("Wrong command");
+       }
         }
+    }
+
+    private static void printAllPatientsByDoctor() {
+        personStorage.printDoctors();
+        System.out.println("Please choose doctor id");
+        String doctorId = scanner.nextLine();
+        Doctor doctorById = personStorage.getDoctorById(doctorId);
+        if(doctorById != null){
+            personStorage.printAllPatientsByDoctor(doctorById);
+        }else {
+            System.out.println("doctor with" + doctorId + "does not exists");
+        }
+    }
+
+    private static void addPatient() {
+        personStorage.printDoctors();
+        System.out.println("Please choose doctor id");
+        String doctorId = scanner.nextLine();
+        Doctor doctorById = personStorage.getDoctorById(doctorId);
+        if(doctorById != null){
+            System.out.println("Please input,id,name,surname,phone,registerDateTime(12/02/2023)");
+            String patientDataStr = scanner.nextLine();
+            String[] patientData = patientDataStr.split(",");
+            Patient patient = new Patient();
+            doctorById.setName(patientData[0]);
+            doctorById.setSurname(patientData[1]);
+            doctorById.setEmail(patientData[2]);
+            doctorById.setProfession(patientData[3]);
+            doctorById.setName(patientData[4]);
+
+
+        }else {
+            System.out.println("doctor with" + doctorId + "does not exists");
+        }
+    }
+
+    private static void changeDoctorById() {
+        personStorage.printDoctors();
+        System.out.println("Please choose doctor id");
+        String doctorId = scanner.nextLine();
+        Doctor doctorById = personStorage.getDoctorById(doctorId);
+        if(doctorById != null){
+            System.out.println("Please input id,name,surname,phone,email,profession");
+            String doctorDataStr = scanner.nextLine();
+            String[] doctorData = doctorDataStr.split(",");
+            doctorById.setName(doctorData[0]);
+            doctorById.setSurname(doctorData[1]);
+            doctorById.setEmail(doctorData[2]);
+            doctorById.setProfession(doctorData[3]);
+            doctorById.setName(doctorData[4]);
+            System.out.println("Doctor changed");
+        }else {
+            System.out.println("doctor with" + doctorId + "does not exists");
+        }
+    }
+
+    private static void deleteDoctorById() {
+        personStorage.printDoctors();
+        System.out.println("Please choose doctor id");
+        String doctorId = scanner.nextLine();
+        Doctor doctorById = personStorage.getDoctorById(doctorId);
+        if(doctorById != null){
+             personStorage.deleteDoctorById(doctorId);
+        }else {
+            System.out.println("doctor with" + doctorId + "does not exists");
+        }
+    }
+
+    private static void searchDoctorByProfession() {
+        System.out.println("Please input profession");
+        String profession = scanner.nextLine();
+        personStorage.searchByProfession(profession);
+    }
+
+    private static void addDoctor() {
+        System.out.println("Please input id,name,surname,phone,email,profession");
+        String doctorDataStr = scanner.nextLine();
+        String[] doctorData = doctorDataStr.split(",");
+        String doctorId = doctorData[0];
+       Doctor doctorById =  personStorage.getDoctorById(doctorId);
+       if (doctorById == null){
+          Doctor doctor = new Doctor();
+          doctor.setId(doctorId);
+          doctor.setName(doctorData[1]);
+           doctor.setSurname(doctorData[2]);
+           doctor.setEmail(doctorData[3]);
+           doctor.setProfession(doctorData[4]);
+           doctor.setName(doctorData[5]);
+           personStorage.add(doctor);
+           System.out.println("Doctor added");
+       }else{
+           System.out.println("doctor with" + doctorId + "already exsists");
+       }
     }
 }
